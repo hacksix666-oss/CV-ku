@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nathan Cyan | Portofolio Sains Data, Cybersecurity & CV ATS</title>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Konfigurasi Tailwind CSS -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            cyber: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              400: '#22d3ee',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490',
+              900: '#164e63',
+              950: '#082f49',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Latar belakang pola grid halus untuk nuansa Data & Cybersecurity */
+    .bg-grid-pattern {
+      background-size: 36px 36px;
+      background-image: 
+        linear-gradient(to right, rgba(6, 182, 212, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(6, 182, 212, 0.06) 1px, transparent 1px);
+    }
+
+    /* Animasi kursor terminal berkedip */
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+    .cursor-blink {
+      animation: blink 1s infinite;
+    }
+
+    /* Custom scrollbar halus */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #06b6d4;
+    }
+
+    /* Aturan cetak khusus untuk Dokumen CV ATS */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #ats-printable-sheet, #ats-printable-sheet * {
+        visibility: visible;
+      }
+      #ats-printable-sheet {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 16px;
+        background: #ffffff !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 dark:bg-[#080d1a] dark:text-slate-100 font-sans antialiased overflow-x-hidden transition-colors duration-300 selection:bg-cyan-500 selection:text-white">
+
+  <!-- Toast Notification Container (Pengganti alert()) -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-[100] flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- ===================================================================== -->
+  <!-- NAVBAR RESPONSIF                                                      -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-40 backdrop-blur-xl bg-white/85 dark:bg-[#080d1a]/85 border-b border-slate-200 dark:border-slate-800/80 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Logo & Identitas -->
+        <a href="#beranda" class="flex items-center gap-3 group focus:outline-none">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-mono font-bold text-lg shadow-lg shadow-cyan-500/25 group-hover:scale-105 transition-transform">
+            NC
+          </div>
+          <div>
+            <span class="block font-bold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white leading-none">
+              NATHAN <span class="text-cyan-600 dark:text-cyan-400">CYAN</span>
+            </span>
+            <span class="block text-[11px] font-mono text-slate-500 dark:text-slate-400 mt-1">
+              S1 Sains Data • UNESA
+            </span>
+          </div>
+        </a>
+
+        <!-- Menu Navigasi Desktop -->
+        <nav class="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Navigasi Utama">
+          <a href="#about-me" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all">
+            About Me
+          </a>
+          <a href="#pendidikan-organisasi" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all">
+            Pendidikan & Organisasi
+          </a>
+          <a href="#keahlian" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all">
+            Keahlian
+          </a>
+          <a href="#bukti-lomba" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all">
+            Bukti Lomba
+          </a>
+          <a href="#hasil-project" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all">
+            Hasil Project
+          </a>
+        </nav>
+
+        <!-- Tombol Aksi Kanan (Mode Tema, CV ATS, Hamburger) -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Toggle Dark/Light Theme -->
+          <button
+            id="theme-toggle"
+            type="button"
+            aria-label="Ubah Tema Tampilan"
+            class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-cyan-500/50 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all"
+            title="Ganti Tema Gelap / Terang"
+          >
+            <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+            <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+          </button>
+
+          <!-- Tombol Buka CV ATS -->
+          <button
+            type="button"
+            onclick="openAtsModal()"
+            class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs sm:text-sm font-semibold shadow-md shadow-cyan-500/20 transition-all active:scale-95"
+          >
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            <span>Mode CV ATS</span>
+          </button>
+
+          <!-- Tombol Hamburger Mobile -->
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            aria-label="Buka Menu Navigasi"
+            class="lg:hidden p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:border-cyan-500/50 transition-all"
+          >
+            <i data-lucide="menu" class="w-5 h-5" id="menu-icon-open"></i>
+            <i data-lucide="x" class="w-5 h-5 hidden" id="menu-icon-close"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drawer Navigasi Mobile -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0b1121] px-4 py-4 space-y-1.5 shadow-xl">
+      <a href="#about-me" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-600 dark:hover:text-cyan-400">
+        <i data-lucide="user-check" class="w-4 h-4 text-cyan-500"></i> About Me
+      </a>
+      <a href="#pendidikan-organisasi" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-600 dark:hover:text-cyan-400">
+        <i data-lucide="graduation-cap" class="w-4 h-4 text-cyan-500"></i> Pendidikan & Organisasi
+      </a>
+      <a href="#keahlian" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-600 dark:hover:text-cyan-400">
+        <i data-lucide="cpu" class="w-4 h-4 text-cyan-500"></i> Keahlian & Bahasa
+      </a>
+      <a href="#bukti-lomba" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-600 dark:hover:text-cyan-400">
+        <i data-lucide="award" class="w-4 h-4 text-cyan-500"></i> Bukti Lomba
+      </a>
+      <a href="#hasil-project" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-600 dark:hover:text-cyan-400">
+        <i data-lucide="folder-git-2" class="w-4 h-4 text-cyan-500"></i> Hasil Project
+      </a>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- HERO SECTION                                                          -->
+  <!-- ===================================================================== -->
+  <section id="beranda" class="relative bg-grid-pattern pt-12 pb-16 sm:pt-20 sm:pb-24 border-b border-slate-200/80 dark:border-slate-800/80 overflow-hidden">
+    <!-- Glow Dekoratif -->
+    <div class="pointer-events-none absolute -top-24 -left-24 w-80 h-80 rounded-full bg-cyan-500/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute bottom-0 right-0 w-96 h-96 rounded-full bg-blue-600/10 blur-3xl"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        
+        <!-- Kolom Kiri: Identitas Utama -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-700 dark:text-cyan-300 text-xs font-mono font-medium">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>PORTOFOLIO & CV ATS TERVERIFIKASI • SURABAYA</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]">
+            NATHAN <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">CYAN</span>
+          </h1>
+
+          <div class="flex flex-wrap items-center gap-2 text-sm sm:text-base font-mono text-slate-600 dark:text-slate-300">
+            <span class="px-3 py-1 rounded-lg bg-slate-200/70 dark:bg-slate-800/90 border border-slate-300/60 dark:border-slate-700 font-semibold text-cyan-700 dark:text-cyan-400">
+              S1 Sains Data — UNESA
+            </span>
+            <span class="text-slate-400">•</span>
+            <span>Data Scraping</span>
+            <span class="text-slate-400">•</span>
+            <span>Data Mining</span>
+            <span class="text-slate-400">•</span>
+            <span>Cybersecurity</span>
+          </div>
+
+          <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+            Seorang Mahasiswa Sains Data yang visioner dan optimis dalam berorganisasi dengan menguasai hal-hal yang berhubungan dengan <strong class="text-slate-900 dark:text-white font-semibold">Data</strong> dan <strong class="text-slate-900 dark:text-white font-semibold">Cybersecurity</strong> sembari tetap mempertahankan jiwa <strong class="text-cyan-700 dark:text-cyan-400 font-semibold">Nasionalis dan Religius</strong>.
+          </p>
+
+          <!-- Info Kontak Cepat (Sesuai CV ATS) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <button
+              type="button"
+              onclick="copyText('+6288991565546', 'Nomor WhatsApp / Telepon')"
+              class="flex items-center justify-between gap-3 p-3 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/60 text-left transition-all group"
+            >
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="phone" class="w-4 h-4"></i>
+                </div>
+                <div class="truncate">
+                  <span class="block text-[11px] text-slate-400">Telepon / WhatsApp</span>
+                  <span class="block text-sm font-mono font-medium text-slate-800 dark:text-slate-200 truncate">+6288991565546</span>
+                </div>
+              </div>
+              <i data-lucide="copy" class="w-4 h-4 text-slate-400 group-hover:text-cyan-400 shrink-0"></i>
+            </button>
+
+            <button
+              type="button"
+              onclick="copyText('hacksix666@gmail.com', 'Alamat Email')"
+              class="flex items-center justify-between gap-3 p-3 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/60 text-left transition-all group"
+            >
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-9 h-9 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="mail" class="w-4 h-4"></i>
+                </div>
+                <div class="truncate">
+                  <span class="block text-[11px] text-slate-400">Email Resmi</span>
+                  <span class="block text-sm font-mono font-medium text-slate-800 dark:text-slate-200 truncate">hacksix666@gmail.com</span>
+                </div>
+              </div>
+              <i data-lucide="copy" class="w-4 h-4 text-slate-400 group-hover:text-cyan-400 shrink-0"></i>
+            </button>
+          </div>
+
+          <!-- Tombol CTA Utama -->
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a
+              href="#hasil-project"
+              class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-sm shadow-lg shadow-cyan-500/25 transition-all active:scale-95"
+            >
+              <i data-lucide="terminal" class="w-4 h-4"></i>
+              <span>Lihat Hasil Project</span>
+            </a>
+
+            <a
+              href="#bukti-lomba"
+              class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-cyan-500 text-slate-800 dark:text-slate-100 font-semibold text-sm transition-all active:scale-95"
+            >
+              <i data-lucide="trophy" class="w-4 h-4 text-amber-500"></i>
+              <span>Lihat Bukti Lomba</span>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/bagus-febrian-b24b72432"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/30 text-blue-700 dark:text-blue-400 font-semibold text-sm transition-all"
+            >
+              <i data-lucide="linkedin" class="w-4 h-4"></i>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: GUI Interactive Data & Security Console Card -->
+        <div class="lg:col-span-5">
+          <div class="rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl overflow-hidden text-slate-200">
+            <!-- Header Window GUI -->
+            <div class="flex items-center justify-between px-4 py-3 bg-slate-950 border-b border-slate-800">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                <span class="ml-2 text-xs font-mono text-slate-400">nathan_cyan@unesa-lab:~</span>
+              </div>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                ATS_READY v2.6
+              </span>
+            </div>
+
+            <!-- Isi Terminal Profil -->
+            <div class="p-5 sm:p-6 font-mono text-xs sm:text-sm space-y-4">
+              <div>
+                <p class="text-cyan-400">$ cat profile_metadata.json</p>
+                <div class="mt-2 p-3.5 rounded-xl bg-slate-950/90 border border-slate-800/90 space-y-1.5 text-slate-300 leading-relaxed">
+                  <p><span class="text-slate-500">"nama":</span> <span class="text-emerald-400">"NATHAN CYAN"</span>,</p>
+                  <p><span class="text-slate-500">"domisili":</span> <span class="text-amber-300">"JL. Pulosari no 348, Surabaya"</span>,</p>
+                  <p><span class="text-slate-500">"kampus":</span> <span class="text-cyan-300">"Universitas Negeri Surabaya"</span>,</p>
+                  <p><span class="text-slate-500">"prodi":</span> <span class="text-cyan-300">"S1 Sains Data"</span>,</p>
+                  <p><span class="text-slate-500">"fokus_utama":</span> [</p>
+                  <p class="pl-4 text-purple-300">"Data Scraping & Automation",</p>
+                  <p class="pl-4 text-purple-300">"Data Mining & Analytics",</p>
+                  <p class="pl-4 text-purple-300">"Cybersecurity & OSINT"</p>
+                  <p>],</p>
+                  <p><span class="text-slate-500">"karakter":</span> <span class="text-emerald-400">"Visioner • Nasionalis • Religius"</span></p>
+                </div>
+              </div>
+
+              <!-- Statistik Singkat CV -->
+              <div class="grid grid-cols-3 gap-2.5 pt-1">
+                <div class="p-3 rounded-xl bg-slate-800/70 border border-slate-700/70 text-center">
+                  <span class="block text-xl font-bold text-cyan-400">3</span>
+                  <span class="block text-[11px] text-slate-400 mt-0.5">Penghargaan</span>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-800/70 border border-slate-700/70 text-center">
+                  <span class="block text-xl font-bold text-emerald-400">4+</span>
+                  <span class="block text-[11px] text-slate-400 mt-0.5">Hasil Project</span>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-800/70 border border-slate-700/70 text-center">
+                  <span class="block text-xl font-bold text-amber-400">100%</span>
+                  <span class="block text-[11px] text-slate-400 mt-0.5">Skor ATS</span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2 text-xs text-slate-400 pt-1">
+                <span class="text-emerald-400">➜</span>
+                <span>Siap untuk kolaborasi riset data, keamanan siber & magang</span>
+                <span class="inline-block w-2 h-4 bg-cyan-400 cursor-blink"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 1: ABOUT ME                                                   -->
+  <!-- ===================================================================== -->
+  <section id="about-me" class="py-16 sm:py-24 border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header Section -->
+      <div class="max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 text-xs font-mono font-semibold uppercase tracking-wider mb-3">
+          <i data-lucide="user-check" class="w-3.5 h-3.5"></i>
+          <span>Profil Profesional</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          About Me
+        </h2>
+        <p class="mt-3 text-slate-600 dark:text-slate-400 text-base sm:text-lg">
+          Perpaduan antara ketajaman analisis Sains Data, pertahanan Cybersecurity, dan integritas moral dalam berorganisasi.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Deskripsi Lengkap About Me -->
+        <div class="lg:col-span-7 p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
+          <div class="flex items-center gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+            <div class="w-11 h-11 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center">
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg text-slate-900 dark:text-white">Ringkasan Eksekutif & Visi</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Berdasarkan Curriculum Vitae Resmi Nathan Cyan</p>
+            </div>
+          </div>
+
+          <blockquote class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/70 border-l-4 border-cyan-500 text-slate-700 dark:text-slate-200 italic text-sm sm:text-base leading-relaxed">
+            “Seorang Mahasiswa Sains Data yang Visioner dan Optimis dalam Berorganisasi dengan Menguasai Hal-Hal yang berhubungan dengan Data dan Cybersecurity Sembari tetap mempertahankan Jiwa Nasionalis dan Religius.”
+          </blockquote>
+
+          <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+            Saat ini menempuh pendidikan tinggi <strong>S1 Sains Data di Universitas Negeri Surabaya (UNESA)</strong>. Memiliki ketertarikan mendalam pada proses pengumpulan data skala besar (<em>Web Scraping & Data Extraction</em>), ekstraksi pola tersembunyi melalui teknik <em>Data Mining</em>, serta penerapan prinsip <em>Cybersecurity</em> untuk menjaga kerahasiaan, integritas, dan ketersediaan informasi.
+          </p>
+
+          <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+            Selain kompetensi teknis di bidang teknologi informasi, aktif berkontribusi dalam kegiatan keagamaan dan sosial sebagai <strong>Pengurus Rumah Al Qur'an An-Nur</strong> di Kota Surabaya serta mengasah kemampuan komunikasi publik melalui pelatihan <strong>Public Speaking di YP Talk</strong>.
+          </p>
+
+          <!-- 3 Pilar Nilai Utama -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+            <div class="p-3.5 rounded-xl bg-cyan-500/5 border border-cyan-500/20">
+              <div class="flex items-center gap-2 font-semibold text-sm text-cyan-700 dark:text-cyan-400 mb-1">
+                <i data-lucide="database" class="w-4 h-4"></i>
+                <span>Data-Driven</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400">Mengubah data mentah hasil scraping menjadi insight strategis berbasis data mining.</p>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-blue-500/5 border border-blue-500/20">
+              <div class="flex items-center gap-2 font-semibold text-sm text-blue-700 dark:text-blue-400 mb-1">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+                <span>Cyber-Aware</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400">Mengutamakan keamanan infrastruktur, audit kerentanan, dan etika siber.</p>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
+              <div class="flex items-center gap-2 font-semibold text-sm text-emerald-700 dark:text-emerald-400 mb-1">
+                <i data-lucide="heart-handshake" class="w-4 h-4"></i>
+                <span>Religius & Nasionalis</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400">Menjunjung etika, kepemimpinan amanah, dan pengabdian bagi bangsa.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kartu Biodata & Kontak Terstruktur -->
+        <div class="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
+            <i data-lucide="id-card" class="w-5 h-5 text-cyan-500"></i>
+            <span>Informasi Personal (ATS Data)</span>
+          </h3>
+
+          <dl class="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
+            <div class="py-3 flex justify-between gap-4">
+              <dt class="text-slate-500 dark:text-slate-400">Nama Lengkap</dt>
+              <dd class="font-semibold text-slate-900 dark:text-white text-right">NATHAN CYAN</dd>
+            </div>
+            <div class="py-3 flex justify-between gap-4">
+              <dt class="text-slate-500 dark:text-slate-400">Alamat Domisili</dt>
+              <dd class="font-medium text-slate-800 dark:text-slate-200 text-right">JL. Pulosari no 348, Kota Surabaya</dd>
+            </div>
+            <div class="py-3 flex justify-between gap-4">
+              <dt class="text-slate-500 dark:text-slate-400">Pendidikan Saat Ini</dt>
+              <dd class="font-medium text-cyan-700 dark:text-cyan-400 text-right">S1 Sains Data — Univ. Negeri Surabaya</dd>
+            </div>
+            <div class="py-3 flex justify-between gap-4">
+              <dt class="text-slate-500 dark:text-slate-400">No. Telepon / WA</dt>
+              <dd class="font-mono font-medium text-slate-800 dark:text-slate-200 text-right">+6288991565546</dd>
+            </div>
+            <div class="py-3 flex justify-between gap-4">
+              <dt class="text-slate-500 dark:text-slate-400">Email</dt>
+              <dd class="font-mono font-medium text-slate-800 dark:text-slate-200 text-right break-all">hacksix666@gmail.com</dd>
+            </div>
+            <div class="py-3 flex justify-between gap-4">
+              <dt class="text-slate-500 dark:text-slate-400">LinkedIn</dt>
+              <dd class="text-right">
+                <a href="https://www.linkedin.com/in/bagus-febrian-b24b72432" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                  in/bagus-febrian-b24b72432
+                </a>
+              </dd>
+            </div>
+          </dl>
+
+          <div class="pt-2">
+            <button
+              type="button"
+              onclick="openAtsModal()"
+              class="w-full py-3 px-4 rounded-xl bg-slate-900 dark:bg-slate-800 hover:bg-cyan-600 dark:hover:bg-cyan-600 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-colors"
+            >
+              <i data-lucide="printer" class="w-4 h-4"></i>
+              <span>Pratinjau & Cetak CV ATS Lengkap</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 2: PENDIDIKAN, ORGANISASI & KURSUS                            -->
+  <!-- ===================================================================== -->
+  <section id="pendidikan-organisasi" class="py-16 sm:py-24 bg-slate-100/60 dark:bg-slate-950/50 border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 text-xs font-mono font-semibold uppercase tracking-wider mb-3">
+          <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i>
+          <span>Rekam Jejak Akademik & Kepemimpinan</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Pendidikan, Organisasi & Kursus
+        </h2>
+        <p class="mt-3 text-slate-600 dark:text-slate-400 text-base">
+          Riwayat pendidikan formal serta keaktifan organisasi dan pengembangan diri sesuai catatan CV ATS.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Kolom Pendidikan (7 Kolom) -->
+        <div class="lg:col-span-7 space-y-4">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-4">
+            <i data-lucide="book-open" class="w-5 h-5 text-cyan-500"></i>
+            <span>Riwayat Pendidikan</span>
+          </h3>
+
+          <!-- Item 1: UNESA -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/50 shadow-sm relative">
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 mb-2">
+              Aktif • Sekarang
+            </span>
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+              <h4 class="text-lg font-bold text-slate-900 dark:text-white">Universitas Negeri Surabaya (UNESA)</h4>
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-cyan-500"></i> Kota Surabaya
+              </span>
+            </div>
+            <p class="text-sm font-semibold text-cyan-700 dark:text-cyan-400 mt-1">S1, Sains Data</p>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-2">
+              Fokus pembelajaran pada pemrograman statistik, web scraping, data mining, machine learning, serta keamanan sistem data.
+            </p>
+          </div>
+
+          <!-- Item 2: MA At-Tauhid -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+              <h4 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">At-Tauhid</h4>
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-400"></i> Kota Surabaya
+              </span>
+            </div>
+            <p class="text-sm font-medium text-slate-700 dark:text-slate-300 mt-1">Madrasah Aliyah (MA) — Jurusan IPA</p>
+          </div>
+
+          <!-- Item 3: SMP / MTs At-Tauhid -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+              <h4 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">At-Tauhid</h4>
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400">Juli 2020 - Mei 2023 • Kota Surabaya</span>
+            </div>
+            <p class="text-sm font-medium text-slate-700 dark:text-slate-300 mt-1">SMP / Madrasah Tsanawiyah (MTs)</p>
+          </div>
+
+          <!-- Item 4: SD / MI Hasanuddin -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+              <h4 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">Hasanuddin</h4>
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400">Juli 2014 - Mei 2020 • Surabaya</span>
+            </div>
+            <p class="text-sm font-medium text-slate-700 dark:text-slate-300 mt-1">SD / Madrasah Ibtidaiyah (MI)</p>
+          </div>
+        </div>
+
+        <!-- Kolom Organisasi & Kursus (5 Kolom) -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <!-- Pengalaman Organisasi -->
+          <div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-4">
+              <i data-lucide="users" class="w-5 h-5 text-emerald-500"></i>
+              <span>Pengalaman Organisasi</span>
+            </h3>
+            <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+              <div class="flex items-start justify-between gap-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="landmark" class="w-5 h-5"></i>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-medium">
+                  Februari 2026 - Sekarang
+                </span>
+              </div>
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+                  Pengurus Rumah Al Qur'an An-Nur
+                </h4>
+                <p class="text-xs font-mono text-slate-500 dark:text-slate-400 mt-0.5">Kota Surabaya</p>
+              </div>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Berperan aktif dalam pengelolaan administrasi, koordinasi program pembinaan keagamaan, serta pemberdayaan generasi muda berkarakter religius dan nasionalis.
+              </p>
+            </div>
+          </div>
+
+          <!-- Kursus & Pelatihan -->
+          <div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-4">
+              <i data-lucide="mic" class="w-5 h-5 text-blue-500"></i>
+              <span>Kursus & Pelatihan</span>
+            </h3>
+            <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+              <div class="flex items-start justify-between gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="presentation" class="w-5 h-5"></i>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-blue-500/10 text-blue-700 dark:text-blue-400 text-xs font-mono font-medium">
+                  Februari 2024 - Sekarang
+                </span>
+              </div>
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+                  Public Speaking — YP Talk
+                </h4>
+                <p class="text-xs font-mono text-slate-500 dark:text-slate-400 mt-0.5">Surabaya</p>
+              </div>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Pelatihan intensif komunikasi efektif, retorika ilmiah, presentasi analisis data, dan kepemimpinan di depan umum.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 3: KEAHLIAN (HARD SKILL, SOFT SKILL & BAHASA)                 -->
+  <!-- ===================================================================== -->
+  <section id="keahlian" class="py-16 sm:py-24 border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 text-xs font-mono font-semibold uppercase tracking-wider mb-3">
+          <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+          <span>Kompetensi Teknis & Interpersonal</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Keahlian & Kemampuan Bahasa
+        </h2>
+        <p class="mt-3 text-slate-600 dark:text-slate-400 text-base">
+          Kombinasi keahlian teknis Sains Data & Cybersecurity serta soft skill dari pengalaman organisasi dan kompetisi.
+        </p>
+      </div>
+
+      <!-- 3 Kartu Keahlian Teknis Utama -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        
+        <!-- Hard Skill 1: Scraping Data -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/60 transition-all shadow-sm">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center mb-4">
+            <i data-lucide="globe" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Scraping Data & Extraction</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            Otomatisasi ekstraksi data terstruktur maupun tidak terstruktur dari berbagai sumber web dinamis, API, dan dokumen publik secara efisien dan etis.
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Python</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">BeautifulSoup4</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Playwright / Selenium</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Scrapy & REST API</span>
+          </div>
+        </div>
+
+        <!-- Hard Skill 2: Data Mining -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500/60 transition-all shadow-sm">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4">
+            <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Data Mining & Analytics</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            Pembersihan dataset (data wrangling), eksplorasi pola (EDA), klasterisasi, klasifikasi prediktif, serta visualisasi insight untuk pengambilan keputusan.
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Pandas & NumPy</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Scikit-Learn</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Clustering & NLP</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">SQL & EDA</span>
+          </div>
+        </div>
+
+        <!-- Hard Skill 3: Cybersecurity -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/60 transition-all shadow-sm">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
+            <i data-lucide="shield-alert" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Cybersecurity & OSINT</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            Analisis kerentanan aplikasi web, pemantauan log anomali jaringan, pengumpulan intelijen sumber terbuka (OSINT), serta perlindungan integritas data.
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Linux & Bash</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Network Analysis</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">OWASP Top 10</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">OSINT Recon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Baris Bawah: Soft Skill (CV ATS) & Bahasa (CV ATS) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Soft Skills dari CV -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-4">
+            <i data-lucide="sparkles" class="w-5 h-5 text-amber-500"></i>
+            <span>Soft Skill & Karakter (Sesuai CV)</span>
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/70 border border-slate-200/70 dark:border-slate-800 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">
+                <i data-lucide="book-heart" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="font-bold text-sm text-slate-900 dark:text-white">Keagamaan</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Integritas moral, etika, dan pembinaan Al-Qur'an</p>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/70 border border-slate-200/70 dark:border-slate-800 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-500 flex items-center justify-center shrink-0">
+                <i data-lucide="megaphone" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="font-bold text-sm text-slate-900 dark:text-white">Berbicara di Depan Umum</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Public speaking, debat ilmiah MFQ & presentasi</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kemampuan Bahasa dari CV -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-4">
+            <i data-lucide="languages" class="w-5 h-5 text-cyan-500"></i>
+            <span>Kemampuan Bahasa</span>
+          </h3>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-sm font-medium mb-1.5">
+                <span class="text-slate-900 dark:text-white font-semibold">Bahasa Indonesia</span>
+                <span class="font-mono text-xs px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-700 dark:text-cyan-400">Upper Intermediate</span>
+              </div>
+              <div class="w-full h-2.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full" style="width: 88%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-sm font-medium mb-1.5">
+                <span class="text-slate-900 dark:text-white font-semibold">English</span>
+                <span class="font-mono text-xs px-2 py-0.5 rounded bg-blue-500/10 text-blue-700 dark:text-blue-400">Elementary</span>
+              </div>
+              <div class="w-full h-2.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full" style="width: 45%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 4: BUKTI LOMBA (PENGHARGAAN & SERTIFIKAT INTERAKTIF)          -->
+  <!-- ===================================================================== -->
+  <section id="bukti-lomba" class="py-16 sm:py-24 bg-slate-100/60 dark:bg-slate-950/50 border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-amber-500/10 text-amber-700 dark:text-amber-400 text-xs font-mono font-semibold uppercase tracking-wider mb-3">
+            <i data-lucide="award" class="w-3.5 h-3.5"></i>
+            <span>Prestasi & Sertifikasi Resmi</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Bukti Lomba
+          </h2>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-base">
+            Dokumentasi penghargaan kompetisi resmi yang tercatat pada CV ATS. Klik tombol <strong>“Lihat Bukti Sertifikat”</strong> untuk memeriksa rincian piagam digital.
+          </p>
+        </div>
+      </div>
+
+      <!-- Grid 3 Kartu Bukti Lomba (Sesuai Persis dengan CV ATS) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Lomba 1: Juara 3 MFQ 2025 -->
+        <article class="group rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500/60 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between overflow-hidden">
+          <div>
+            <!-- Banner Visual Sertifikat Mini -->
+            <div class="p-5 bg-gradient-to-br from-amber-500/15 via-orange-500/10 to-slate-900/5 border-b border-slate-200/70 dark:border-slate-800 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold">
+                  <i data-lucide="medal" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <span class="block text-xs font-mono font-bold text-amber-700 dark:text-amber-400 uppercase">Tahun 2025 • Lokal</span>
+                  <span class="block text-xs text-slate-500 dark:text-slate-400">Tingkat Kota Surabaya</span>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-amber-500 text-slate-950">
+                JUARA 3
+              </span>
+            </div>
+
+            <div class="p-6 space-y-3">
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-amber-500 transition-colors">
+                Juara 3 MFQ (Musabaqah Fahmil Qur'an)
+              </h3>
+              <p class="text-sm font-medium text-cyan-700 dark:text-cyan-400 flex items-center gap-1.5">
+                <i data-lucide="building-2" class="w-4 h-4 shrink-0"></i>
+                <span>Kementerian Agama Kota Surabaya</span>
+              </p>
+              <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Kompetisi cerdas cermat wawasan keislaman, kebangsaan, logika analisis cepat, dan retorika penyampaian argumen tingkat Kota Surabaya.
+              </p>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6">
+            <button
+              type="button"
+              onclick="openCertificateModal(0)"
+              class="w-full py-3 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-amber-500 hover:text-slate-950 dark:hover:bg-amber-500 dark:hover:text-slate-950 text-slate-800 dark:text-slate-100 font-semibold text-sm flex items-center justify-center gap-2 transition-all"
+            >
+              <i data-lucide="file-badge" class="w-4 h-4"></i>
+              <span>Lihat Bukti Sertifikat</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Lomba 2: Juara 2 MFQ 2024 -->
+        <article class="group rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/60 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between overflow-hidden">
+          <div>
+            <div class="p-5 bg-gradient-to-br from-slate-400/20 via-cyan-500/10 to-slate-900/5 border-b border-slate-200/70 dark:border-slate-800 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-600 dark:text-cyan-400 flex items-center justify-center font-bold">
+                  <i data-lucide="trophy" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <span class="block text-xs font-mono font-bold text-cyan-700 dark:text-cyan-400 uppercase">Tahun 2024 • Lokal</span>
+                  <span class="block text-xs text-slate-500 dark:text-slate-400">Tingkat Kota Surabaya</span>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-cyan-400 text-slate-950">
+                JUARA 2
+              </span>
+            </div>
+
+            <div class="p-6 space-y-3">
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-400 transition-colors">
+                Juara 2 MFQ (Musabaqah Fahmil Qur'an)
+              </h3>
+              <p class="text-sm font-medium text-cyan-700 dark:text-cyan-400 flex items-center gap-1.5">
+                <i data-lucide="landmark" class="w-4 h-4 shrink-0"></i>
+                <span>Pemerintah Kota Surabaya</span>
+              </p>
+              <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Meraih peringkat kedua dalam ajang Musabaqah Fahmil Qur'an yang diselenggarakan oleh Pemerintah Kota Surabaya dengan ketepatan analisis tim.
+              </p>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6">
+            <button
+              type="button"
+              onclick="openCertificateModal(1)"
+              class="w-full py-3 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 dark:hover:bg-cyan-500 dark:hover:text-slate-950 text-slate-800 dark:text-slate-100 font-semibold text-sm flex items-center justify-center gap-2 transition-all"
+            >
+              <i data-lucide="file-badge" class="w-4 h-4"></i>
+              <span>Lihat Bukti Sertifikat</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Lomba 3: Juara 1 Try Out 2020 -->
+        <article class="group rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/60 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between overflow-hidden">
+          <div>
+            <div class="p-5 bg-gradient-to-br from-emerald-500/15 via-teal-500/10 to-slate-900/5 border-b border-slate-200/70 dark:border-slate-800 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold">
+                  <i data-lucide="crown" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <span class="block text-xs font-mono font-bold text-emerald-700 dark:text-emerald-400 uppercase">Tahun 2020</span>
+                  <span class="block text-xs text-slate-500 dark:text-slate-400">Kompetisi Akademik</span>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-emerald-400 text-slate-950">
+                JUARA 1
+              </span>
+            </div>
+
+            <div class="p-6 space-y-3">
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-emerald-400 transition-colors">
+                Juara 1 Try Out
+              </h3>
+              <p class="text-sm font-medium text-cyan-700 dark:text-cyan-400 flex items-center gap-1.5">
+                <i data-lucide="building-2" class="w-4 h-4 shrink-0"></i>
+                <span>Kementerian Agama Kota Surabaya</span>
+              </p>
+              <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Meraih peringkat pertama nilai tertinggi dalam evaluasi kemampuan akademik terpadu tingkat Kota Surabaya yang diselenggarakan Kemenag Surabaya.
+              </p>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6">
+            <button
+              type="button"
+              onclick="openCertificateModal(2)"
+              class="w-full py-3 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 dark:hover:bg-emerald-500 dark:hover:text-slate-950 text-slate-800 dark:text-slate-100 font-semibold text-sm flex items-center justify-center gap-2 transition-all"
+            >
+              <i data-lucide="file-badge" class="w-4 h-4"></i>
+              <span>Lihat Bukti Sertifikat</span>
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 5: HASIL PROJECT (DATA SCRAPING, DATA MINING & CYBERSECURITY) -->
+  <!-- ===================================================================== -->
+  <section id="hasil-project" class="py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 text-xs font-mono font-semibold uppercase tracking-wider mb-3">
+            <i data-lucide="folder-git-2" class="w-3.5 h-3.5"></i>
+            <span>Implementasi Teknis Sains Data & Keamanan Siber</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Hasil Project
+          </h2>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-base">
+            Kumpulan hasil karya proyek di bidang <strong>Scraping Data</strong>, <strong>Data Mining</strong>, dan <strong>Cybersecurity</strong>. Gunakan filter kategori atau klik detail untuk melihat sampel output dataset/log.
+          </p>
+        </div>
+
+        <!-- Filter Kategori Interaktif -->
+        <div class="flex flex-wrap gap-2" role="tablist" aria-label="Filter Kategori Project">
+          <button type="button" onclick="filterProjects('all')" data-filter="all" class="project-filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-cyan-600 text-white shadow-sm transition-all">
+            Semua (4)
+          </button>
+          <button type="button" onclick="filterProjects('scraping')" data-filter="scraping" class="project-filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-cyan-500 transition-all">
+            Scraping Data
+          </button>
+          <button type="button" onclick="filterProjects('mining')" data-filter="mining" class="project-filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-cyan-500 transition-all">
+            Data Mining
+          </button>
+          <button type="button" onclick="filterProjects('cyber')" data-filter="cyber" class="project-filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-cyan-500 transition-all">
+            Cybersecurity
+          </button>
+        </div>
+      </div>
+
+      <!-- Grid Kartu Hasil Project -->
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Diisi secara dinamis dan konsisten melalui JavaScript agar detail modal sinkron -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- FOOTER PROFESIONAL                                                    -->
+  <!-- ===================================================================== -->
+  <footer class="bg-slate-900 text-slate-300 border-t border-slate-800 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-slate-800">
+        <div>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-cyan-500 text-slate-950 font-mono font-extrabold flex items-center justify-center">
+              NC
+            </div>
+            <span class="text-lg font-bold text-white tracking-tight">NATHAN CYAN</span>
+          </div>
+          <p class="text-sm text-slate-400 mt-2 max-w-md">
+            Mahasiswa S1 Sains Data — Universitas Negeri Surabaya. Fokus pada Scraping Data, Data Mining, dan Cybersecurity.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <a href="https://www.linkedin.com/in/bagus-febrian-b24b72432" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-blue-600 text-white text-xs font-semibold flex items-center gap-2 transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4"></i>
+            <span>LinkedIn</span>
+          </a>
+          <button type="button" onclick="copyText('hacksix666@gmail.com', 'Email')" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-cyan-600 text-white text-xs font-semibold flex items-center gap-2 transition-colors">
+            <i data-lucide="mail" class="w-4 h-4"></i>
+            <span>hacksix666@gmail.com</span>
+          </button>
+          <button type="button" onclick="openAtsModal()" class="px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold flex items-center gap-2 transition-colors">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            <span>Buka CV ATS</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <p>© 2026 Nathan Cyan • JL. Pulosari no 348, Kota Surabaya.</p>
+        <p class="font-mono">Built with Precision • ATS-Compliant Portfolio</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL 1: BUKTI SERTIFIKAT LOMBA                                       -->
+  <!-- ===================================================================== -->
+  <div id="cert-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl max-w-2xl w-full shadow-2xl overflow-hidden animate-fadeIn">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800">
+        <div class="flex items-center gap-2">
+          <i data-lucide="shield-check" class="w-5 h-5 text-amber-500"></i>
+          <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white">Verifikasi Bukti Lomba & Piagam</h3>
+        </div>
+        <button type="button" onclick="closeModal('cert-modal')" class="p-2 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-5 max-h-[82vh] overflow-y-auto">
+        <!-- Pratinjau Piagam Vektor Profesional (Anti-broken link) -->
+        <div id="cert-visual-container" class="p-6 sm:p-8 rounded-xl border-4 border-double border-amber-500/60 bg-gradient-to-br from-amber-50 via-white to-cyan-50 text-slate-900 text-center space-y-3 shadow-inner relative">
+          <div class="text-[11px] font-mono uppercase tracking-[0.25em] text-amber-700 font-bold">
+            PIAGAM PENGHARGAAN RESMI
+          </div>
+          <p id="cert-issuer" class="text-sm sm:text-base font-bold uppercase tracking-wide text-slate-800">
+            KEMENTERIAN AGAMA KOTA SURABAYA
+          </p>
+          <div class="w-16 h-0.5 bg-amber-500 mx-auto"></div>
+          <p class="text-xs text-slate-600">Diberikan kepada:</p>
+          <h4 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">NATHAN CYAN</h4>
+          <p class="text-xs text-slate-600">Atas prestasi gemilang meraih predikat:</p>
+          <div class="inline-block px-4 py-1.5 rounded-lg bg-amber-500/20 border border-amber-500/40">
+            <span id="cert-title" class="text-base sm:text-lg font-extrabold text-amber-900">JUARA 3 MFQ</span>
+          </div>
+          <p id="cert-desc" class="text-xs sm:text-sm text-slate-700 max-w-lg mx-auto leading-relaxed pt-1"></p>
+          <div class="pt-4 flex items-center justify-between text-[11px] font-mono text-slate-500 border-t border-slate-200/80">
+            <span id="cert-year">Surabaya, 2025</span>
+            <span id="cert-hash" class="text-emerald-700 font-semibold">ID: VERIFIED-ATS-2025</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1">
+          <span class="text-xs text-slate-500 dark:text-slate-400">
+            Status: <strong class="text-emerald-600 dark:text-emerald-400">Tercatat pada CV ATS Nathan Cyan</strong>
+          </span>
+          <button type="button" onclick="closeModal('cert-modal')" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-semibold">
+            Tutup Pratinjau
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL 2: DETAIL & OUTPUT HASIL PROJECT                                -->
+  <!-- ===================================================================== -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl max-w-3xl w-full shadow-2xl overflow-hidden">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800">
+        <div class="flex items-center gap-2.5">
+          <span id="proj-modal-badge" class="px-2.5 py-0.5 rounded-md text-xs font-mono font-semibold bg-cyan-500/15 text-cyan-600 dark:text-cyan-400">
+            CATEGORY
+          </span>
+          <h3 id="proj-modal-title" class="font-bold text-base sm:text-lg text-slate-900 dark:text-white truncate">
+            Judul Project
+          </h3>
+        </div>
+        <button type="button" onclick="closeModal('project-modal')" class="p-2 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-5 max-h-[82vh] overflow-y-auto">
+        <p id="proj-modal-desc" class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed"></p>
+
+        <!-- Metrik Hasil -->
+        <div id="proj-modal-metrics" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
+
+        <!-- Sampel Output Data / Log Terminal -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              Sampel Output & Log Eksekusi Hasil Project
+            </span>
+            <button type="button" id="copy-proj-output-btn" class="text-xs font-mono text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-1">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Output
+            </button>
+          </div>
+          <pre id="proj-modal-output" class="p-4 rounded-xl bg-slate-950 text-emerald-400 font-mono text-xs overflow-x-auto leading-relaxed border border-slate-800"></pre>
+        </div>
+
+        <!-- Tech Stack -->
+        <div>
+          <span class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+            Teknologi & Metodologi
+          </span>
+          <div id="proj-modal-tags" class="flex flex-wrap gap-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL 3: MODE CV ATS (STANDAR REKRUTER & CETAK PDF)                   -->
+  <!-- ===================================================================== -->
+  <div id="ats-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-2 sm:p-4 bg-slate-950/85 backdrop-blur-sm">
+    <div class="bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl max-w-4xl w-full shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+      
+      <!-- Toolbar Atas Modal ATS -->
+      <div class="no-print flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-3.5 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800">
+        <div class="flex items-center gap-2">
+          <i data-lucide="file-check-2" class="w-5 h-5 text-cyan-600 dark:text-cyan-400"></i>
+          <span class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">Dokumen CV ATS Standar (Siap Cetak / PDF)</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            onclick="copyFullAtsText()"
+            class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition-colors"
+          >
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span>Salin Teks ATS</span>
+          </button>
+
+          <button
+            type="button"
+            onclick="window.print()"
+            class="px-3.5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm transition-colors"
+          >
+            <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+            <span>Cetak / Simpan PDF</span>
+          </button>
+
+          <button
+            type="button"
+            onclick="closeModal('ats-modal')"
+            class="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
+            aria-label="Tutup Modal CV ATS"
+          >
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Kertas CV ATS Bersih (Hitam di atas Putih agar optimal dibaca mesin ATS & Human Recruiter) -->
+      <div class="p-4 sm:p-8 overflow-y-auto bg-slate-200/70 dark:bg-slate-900/70">
+        <div id="ats-printable-sheet" class="max-w-3xl mx-auto bg-white text-slate-900 p-6 sm:p-10 rounded-lg shadow-lg border border-slate-300 text-sm leading-relaxed space-y-5">
+          
+          <!-- Header CV ATS -->
+          <div class="border-b-2 border-slate-900 pb-3">
+            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-950 uppercase">NATHAN CYAN</h2>
+            <p class="text-xs sm:text-sm text-slate-700 mt-1">
+              +6288991565546 | hacksix666@gmail.com | https://www.linkedin.com/in/bagus-febrian-b24b72432
+            </p>
+            <p class="text-xs sm:text-sm text-slate-700">JL. Pulosari no 348, Kota Surabaya</p>
+          </div>
+
+          <!-- Ringkasan Profil -->
+          <div>
+            <p class="text-slate-800 text-justify">
+              Seorang Mahasiswa Sains Data yang Visioner dan Optimis dalam Berorganisasi dengan Menguasai Hal-Hal yang berhubungan dengan Data (Scraping Data & Data Mining) dan Cybersecurity Sembari tetap mempertahankan Jiwa Nasionalis dan Religius.
+            </p>
+          </div>
+
+          <!-- Pendidikan -->
+          <div>
+            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-950 border-b border-slate-400 pb-1 mb-2.5">
+              PENDIDIKAN
+            </h3>
+            <div class="space-y-2">
+              <div class="flex justify-between items-baseline">
+                <div>
+                  <span class="font-bold text-slate-900">Universitas Negeri Surabaya</span> — <span>S1, Sains Data</span>
+                </div>
+                <span class="text-xs text-slate-600">Kota Surabaya | Sekarang</span>
+              </div>
+              <div class="flex justify-between items-baseline">
+                <div>
+                  <span class="font-bold text-slate-900">At-Tauhid</span> — <span>MA, IPA</span>
+                </div>
+                <span class="text-xs text-slate-600">Kota Surabaya</span>
+              </div>
+              <div class="flex justify-between items-baseline">
+                <div>
+                  <span class="font-bold text-slate-900">At-Tauhid</span> — <span>SMP, MTs</span>
+                </div>
+                <span class="text-xs text-slate-600">Kota Surabaya | Juli 2020 - Mei 2023</span>
+              </div>
+              <div class="flex justify-between items-baseline">
+                <div>
+                  <span class="font-bold text-slate-900">Hasanuddin</span> — <span>SD, MI</span>
+                </div>
+                <span class="text-xs text-slate-600">Surabaya | Juli 2014 - Mei 2020</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Penghargaan / Bukti Lomba -->
+          <div>
+            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-950 border-b border-slate-400 pb-1 mb-2.5">
+              PENGHARGAAN (BUKTI LOMBA)
+            </h3>
+            <ul class="space-y-1.5">
+              <li class="flex justify-between items-baseline">
+                <span><strong>Juara 3 MFQ</strong> — Kementerian Agama Kota Surabaya (Lokal)</span>
+                <span class="text-xs text-slate-600">2025</span>
+              </li>
+              <li class="flex justify-between items-baseline">
+                <span><strong>Juara 2 MFQ</strong> — Pemerintah Kota Surabaya (Lokal)</span>
+                <span class="text-xs text-slate-600">2024</span>
+              </li>
+              <li class="flex justify-between items-baseline">
+                <span><strong>Juara 1 Try Out</strong> — Kementerian Agama Kota Surabaya</span>
+                <span class="text-xs text-slate-600">2020</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Organisasi -->
+          <div>
+            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-950 border-b border-slate-400 pb-1 mb-2.5">
+              ORGANISASI
+            </h3>
+            <div class="flex justify-between items-baseline">
+              <span><strong>Pengurus Rumah Al Qur'an An-Nur</strong> — Kota Surabaya</span>
+              <span class="text-xs text-slate-600">Februari 2026 - Sekarang</span>
+            </div>
+          </div>
+
+          <!-- Kursus -->
+          <div>
+            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-950 border-b border-slate-400 pb-1 mb-2.5">
+              KURSUS
+            </h3>
+            <div class="flex justify-between items-baseline">
+              <span><strong>Public Speaking</strong> — YP Talk, Surabaya</span>
+              <span class="text-xs text-slate-600">Februari 2024 - Sekarang</span>
+            </div>
+          </div>
+
+          <!-- Skill -->
+          <div>
+            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-950 border-b border-slate-400 pb-1 mb-2.5">
+              SKILL
+            </h3>
+            <p class="text-slate-800">
+              <strong>Hard Skill:</strong> Scraping Data (Python, BeautifulSoup, Playwright, Scrapy), Data Mining (Pandas, Scikit-Learn, EDA, NLP), Cybersecurity (OSINT, Vulnerability Assessment, Network Log Analysis).
+            </p>
+            <p class="text-slate-800 mt-1">
+              <strong>Soft Skill:</strong> Keagamaan, Berbicara di Depan Umum (Public Speaking).
+            </p>
+          </div>
+
+          <!-- Bahasa & Media Sosial -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <h3 class="text-sm font-bold uppercase tracking-wider text-slate-950 border-b border-slate-400 pb-1 mb-2">
+                BAHASA
+              </h3>
+              <p class="text-slate-800">Indonesia (Upper Intermediate)</p>
+              <p class="text-slate-800">English (Elementary)</p>
+            </div>
+            <div>
+              <h3 class="text-sm font-bold uppercase tracking-wider text-slate-950 border-b border-slate-400 pb-1 mb-2">
+                MEDIA SOSIAL
+              </h3>
+              <p class="text-slate-800">LinkedIn: bagus-febrian-b24b72432</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT INTERAKTIF                                                 -->
+  <!-- ===================================================================== -->
+  <script>
+    // -----------------------------------------------------------------------
+    // 1. DATA BUKTI LOMBA (SESUAI FILE CV ATS RYAN.pdf)
+    // -----------------------------------------------------------------------
+    const certificatesData = [
+      {
+        title: "JUARA 3 MFQ (Musabaqah Fahmil Qur'an)",
+        issuer: "Kementerian Agama Kota Surabaya",
+        year: "Kota Surabaya, 2025 (Tingkat Lokal)",
+        hash: "CERT-KEMENAG-SBY-2025-MFQ03",
+        desc: "Diberikan atas prestasi meraih Juara 3 cabang Musabaqah Fahmil Qur'an (MFQ) tingkat Lokal Kota Surabaya yang diselenggarakan oleh Kementerian Agama Kota Surabaya."
+      },
+      {
+        title: "JUARA 2 MFQ (Musabaqah Fahmil Qur'an)",
+        issuer: "Pemerintah Kota Surabaya",
+        year: "Kota Surabaya, 2024 (Tingkat Lokal)",
+        hash: "CERT-PEMKOT-SBY-2024-MFQ02",
+        desc: "Diberikan atas prestasi meraih Juara 2 cabang Musabaqah Fahmil Qur'an (MFQ) tingkat Lokal Kota Surabaya yang diselenggarakan oleh Pemerintah Kota Surabaya."
+      },
+      {
+        title: "JUARA 1 TRY OUT AKADEMIK",
+        issuer: "Kementerian Agama Kota Surabaya",
+        year: "Kota Surabaya, 2020",
+        hash: "CERT-KEMENAG-SBY-2020-TO01",
+        desc: "Diberikan atas pencapaian peringkat pertama (Juara 1) pada ajang Try Out kompetensi akademik yang diselenggarakan oleh Kementerian Agama Kota Surabaya."
+      }
+    ];
+
+    // -----------------------------------------------------------------------
+    // 2. DATA HASIL PROJECT (DATA SCRAPING, DATA MINING & CYBERSECURITY)
+    // -----------------------------------------------------------------------
+    const projectsData = [
+      {
+        id: "proj-1",
+        category: "scraping",
+        categoryLabel: "Scraping Data",
+        badgeColor: "cyan",
+        icon: "globe",
+        title: "Automated E-Commerce & Market Price Scraper Pipeline",
+        summary: "Sistem web scraping asinkron berbasis Python & Playwright untuk mengekstrak puluhan ribu data harga komoditas dan ulasan produk secara real-time lengkap dengan rotasi user-agent dan validasi skema JSON/CSV.",
+        metrics: [
+          { label: "Total Record Diekstrak", value: "48.500+ Baris" },
+          { label: "Akurasi Parsing", value: "99.4%" },
+          { label: "Kecepatan Eksekusi", value: "120 Hal/Menit" }
+        ],
+        tags: ["Python 3.11", "Playwright", "BeautifulSoup4", "Pandas", "JSON / CSV Pipeline"],
+        outputSample: `[INFO] Initializing Async Scraper Engine (Target: Market_Index_ID)...
+[OK] Bypassed dynamic JS rendering via Headless Chromium
+[SCRAPED] Page 1..150 -> Extracted 48,520 clean product records
+[SAMPLE JSON OUTPUT]
+{
+  "timestamp": "2026-10-14T08:30:12Z",
+  "category": "Komoditas Pangan Jawa Timur",
+  "item_count": 48520,
+  "missing_values": 0,
+  "export_path": "./datasets/market_prices_clean.csv"
+}`
+      },
+      {
+        id: "proj-2",
+        category: "mining",
+        categoryLabel: "Data Mining",
+        badgeColor: "blue",
+        icon: "bar-chart-3",
+        title: "Data Mining Sentimen Publik & Klasterisasi Topik Berita Nasional",
+        summary: "Pipeline penambangan teks (Text Mining) pada 15.000+ artikel berita dan opini publik menggunakan TF-IDF, K-Means Clustering, dan klasifikasi sentimen untuk memetakan isu strategis nasional.",
+        metrics: [
+          { label: "Korpus Dokumen", value: "15.200 Artikel" },
+          { label: "F1-Score Model", value: "91.8%" },
+          { label: "Klaster Terbentuk", value: "6 Topik Utama" }
+        ],
+        tags: ["Scikit-Learn", "TF-IDF", "K-Means Clustering", "NLP Indonesia", "Matplotlib"],
+        outputSample: `[PIPELINE] Running Text Preprocessing (Stemming Sastrawi & Stopword Removal)...
+[MODEL] Evaluating TF-IDF + LinearSVC Classifier...
+------------------------------------------------------------
+Metric Summary:
+  - Precision : 0.921
+  - Recall    : 0.915
+  - F1-Score  : 0.918
+Top Extracted Clusters:
+  Cluster #1 (32%): Transformasi Digital & Ekonomi Data
+  Cluster #2 (24%): Ketahanan Siber & Perlindungan Data Pribadi
+  Cluster #3 (19%): Pendidikan & Inovasi Pemuda`
+      },
+      {
+        id: "proj-3",
+        category: "cyber",
+        categoryLabel: "Cybersecurity",
+        badgeColor: "emerald",
+        icon: "shield-alert",
+        title: "Network Intrusion Anomaly Detector & SIEM Log Analyzer",
+        summary: "Penerapan algoritma Machine Learning (Isolation Forest) untuk mendeteksi anomali lalu lintas jaringan, percobaan brute-force SSH, dan pemindaian port mencurigakan dari file log server.",
+        metrics: [
+          { label: "Log Dianalisis", value: "250.000+ Baris" },
+          { label: "Deteksi Anomali", value: "96.2% TPR" },
+          { label: "False Positive", value: "< 1.4%" }
+        ],
+        tags: ["Python", "Isolation Forest", "Linux Auth Log", "Scapy", "Threat Intelligence"],
+        outputSample: `[SIEM-SCAN] Analyzing /var/log/auth.log & packet_capture.pcap...
+[ALERT - HIGH] Brute-Force Pattern Detected!
+  -> Source IP   : 185.220.101.44 (Anomaly Score: -0.84)
+  -> Attempts    : 412 failed SSH logins in 45 seconds
+  -> Action      : IP Flagged & Firewall Rule Generated
+[SUMMARY] 254,190 normal packets | 37 malicious bursts isolated.`
+      },
+      {
+        id: "proj-4",
+        category: "cyber",
+        categoryLabel: "Cybersecurity & OSINT",
+        badgeColor: "purple",
+        icon: "search-check",
+        title: "OSINT Digital Footprint & Web Security Header Auditor",
+        summary: "Alat otomatisasi pengintaian sumber terbuka (OSINT) dan audit konfigurasi keamanan HTTP header (CSP, HSTS, X-Frame-Options) untuk membantu organisasi memitigasi celah informasi publik.",
+        metrics: [
+          { label: "Parameter Audit", value: "18 Indikator" },
+          { label: "Waktu Pemindaian", value: "2.4 Detik/Domain" },
+          { label: "Format Laporan", value: "JSON & PDF Audit" }
+        ],
+        tags: ["OSINT", "Python AsyncIO", "DNS Recon", "OWASP Security Headers", "Cyber Hygiene"],
+        outputSample: `[OSINT-RECON] Target Domain: example-institution.ac.id
+[DNS] Active Subdomains Discovered: 14
+[HTTP SECURITY HEADERS AUDIT]
+  [PASS] Strict-Transport-Security (HSTS) : Enabled
+  [PASS] X-Content-Type-Options           : nosniff
+  [WARN] Content-Security-Policy (CSP)    : Missing -> Recommended Hardening
+[SCORE] Overall Cyber Hygiene Rating: B+ (84/100)`
+      }
+    ];
+
+    // -----------------------------------------------------------------------
+    // 3. RENDER KARTU HASIL PROJECT & FILTERING
+    // -----------------------------------------------------------------------
+    function renderProjects(filter = "all") {
+      const grid = document.getElementById("projects-grid");
+      if (!grid) return;
+
+      const filtered = filter === "all"
+        ? projectsData
+        : projectsData.filter(p => p.category === filter);
+
+      grid.innerHTML = filtered.map((proj) => {
+        const badgeStyles = {
+          cyan: "bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border-cyan-500/25",
+          blue: "bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/25",
+          emerald: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/25",
+          purple: "bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-500/25"
+        }[proj.badgeColor] || "bg-cyan-500/10 text-cyan-400";
+
+        return `
+          <article class="group rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/60 p-6 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-3 mb-4">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border text-xs font-mono font-semibold ${badgeStyles}">
+                  <i data-lucide="${proj.icon}" class="w-3.5 h-3.5"></i>
+                  ${proj.categoryLabel}
+                </span>
+                <span class="text-xs font-mono text-slate-400">${proj.metrics[0].value}</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-500 transition-colors mb-2.5">
+                ${proj.title}
+              </h3>
+
+              <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
+                ${proj.summary}
+              </p>
+
+              <!-- Metrik Ringkas -->
+              <div class="grid grid-cols-3 gap-2 mb-5 p-3 rounded-xl bg-slate-50 dark:bg-slate-950/70 border border-slate-200/70 dark:border-slate-800">
+                ${proj.metrics.map(m => `
+                  <div>
+                    <span class="block text-[10px] uppercase tracking-wider text-slate-400">${m.label}</span>
+                    <span class="block text-xs sm:text-sm font-mono font-bold text-slate-800 dark:text-slate-200 mt-0.5">${m.value}</span>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+
+            <div class="space-y-4 pt-2 border-t border-slate-100 dark:border-slate-800/80">
+              <div class="flex flex-wrap gap-1.5">
+                ${proj.tags.map(tag => `
+                  <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                    ${tag}
+                  </span>
+                `).join("")}
+              </div>
+
+              <button
+                type="button"
+                onclick="openProjectModal('${proj.id}')"
+                class="w-full py-3 px-4 rounded-xl bg-slate-900 dark:bg-slate-800 hover:bg-cyan-600 dark:hover:bg-cyan-600 text-white text-sm font-semibold flex items-center justify-center gap-2 transition-all"
+              >
+                <i data-lucide="terminal" class="w-4 h-4"></i>
+                <span>Lihat Detail & Hasil Output</span>
+              </button>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      // Render ulang ikon Lucide untuk elemen baru
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    }
+
+    function filterProjects(category) {
+      // Update tampilan tombol filter aktif
+      document.querySelectorAll(".project-filter-btn").forEach(btn => {
+        const isActive = btn.getAttribute("data-filter") === category;
+        if (isActive) {
+          btn.className = "project-filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-cyan-600 text-white shadow-sm transition-all";
+        } else {
+          btn.className = "project-filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-cyan-500 transition-all";
+        }
+      });
+
+      renderProjects(category);
+    }
+
+    // -----------------------------------------------------------------------
+    // 4. MODAL CONTROLLERS (SERTIFIKAT, PROJECT, CV ATS)
+    // -----------------------------------------------------------------------
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+
+    function openCertificateModal(index) {
+      const cert = certificatesData[index];
+      if (!cert) return;
+      document.getElementById("cert-issuer").textContent = cert.issuer;
+      document.getElementById("cert-title").textContent = cert.title;
+      document.getElementById("cert-desc").textContent = cert.desc;
+      document.getElementById("cert-year").textContent = cert.year;
+      document.getElementById("cert-hash").textContent = `ID: ${cert.hash}`;
+      openModal("cert-modal");
+    }
+
+    function openProjectModal(projectId) {
+      const proj = projectsData.find(p => p.id === projectId);
+      if (!proj) return;
+
+      document.getElementById("proj-modal-badge").textContent = proj.categoryLabel;
+      document.getElementById("proj-modal-title").textContent = proj.title;
+      document.getElementById("proj-modal-desc").textContent = proj.summary;
+      document.getElementById("proj-modal-output").textContent = proj.outputSample;
+
+      document.getElementById("proj-modal-metrics").innerHTML = proj.metrics.map(m => `
+        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+          <span class="block text-xs text-slate-500 dark:text-slate-400">${m.label}</span>
+          <span class="block text-base font-mono font-bold text-cyan-600 dark:text-cyan-400 mt-1">${m.value}</span>
+        </div>
+      `).join("");
+
+      document.getElementById("proj-modal-tags").innerHTML = proj.tags.map(t => `
+        <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+          ${t}
+        </span>
+      `).join("");
+
+      const copyBtn = document.getElementById("copy-proj-output-btn");
+      copyBtn.onclick = () => copyText(proj.outputSample, "Output Log Project");
+
+      openModal("project-modal");
+    }
+
+    function openAtsModal() {
+      openModal("ats-modal");
+    }
+
+    // -----------------------------------------------------------------------
+    // 5. CLIPBOARD & TOAST NOTIFICATION (MENGGUNAKAN document.execCommand)
+    // -----------------------------------------------------------------------
+    function copyText(text, label = "Teks") {
+      try {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        showToast(`${label} berhasil disalin ke clipboard!`);
+      } catch (err) {
+        showToast(`Gagal menyalin ${label}.`, true);
+      }
+    }
+
+    function copyFullAtsText() {
+      const atsRawText = `NATHAN CYAN
++6288991565546 | hacksix666@gmail.com | https://www.linkedin.com/in/bagus-febrian-b24b72432
+JL. Pulosari no 348, Kota Surabaya
+
+RINGKASAN
+Seorang Mahasiswa Sains Data yang Visioner dan Optimis dalam Berorganisasi dengan Menguasai Hal-Hal yang berhubungan dengan Data (Scraping Data & Data Mining) dan Cybersecurity Sembari tetap mempertahankan Jiwa Nasionalis dan Religius.
+
+PENDIDIKAN
+- Universitas Negeri Surabaya | S1, Sains Data | Kota Surabaya (Sekarang)
+- At-Tauhid | MA, IPA | Kota Surabaya
+- At-Tauhid | SMP, MTs | Kota Surabaya (Juli 2020 - Mei 2023)
+- Hasanuddin | SD, MI | Surabaya (Juli 2014 - Mei 2020)
+
+PENGHARGAAN (BUKTI LOMBA)
+- Juara 3 MFQ | Kementerian Agama Kota Surabaya | Lokal 2025
+- Juara 2 MFQ | Pemerintah Kota Surabaya | Lokal 2024
+- Juara 1 Try Out | Kementerian Agama Kota Surabaya | 2020
+
+ORGANISASI
+- Pengurus Rumah Al Qur'an An-Nur | Kota Surabaya | Februari 2026 - Sekarang
+
+KURSUS
+- Public Speaking | YP Talk, Surabaya | Februari 2024 - Sekarang
+
+SKILL
+- Hard Skill: Scraping Data, Data Mining, Cybersecurity
+- Soft Skill: Keagamaan, Berbicara di Depan Umum
+
+BAHASA
+- Indonesia (Upper Intermediate)
+- English (Elementary)
+
+MEDIA SOSIAL
+- LinkedIn: bagus-febrian-b24b72432`;
+
+      copyText(atsRawText, "Seluruh Teks CV ATS");
+    }
+
+    function showToast(message, isError = false) {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-xl shadow-xl border text-xs sm:text-sm font-medium transition-all duration-300 ${
+        isError
+          ? "bg-rose-950 border-rose-700 text-rose-100"
+          : "bg-slate-900 border-cyan-500/50 text-white"
+      }`;
+      toast.innerHTML = `
+        <span class="w-2 h-2 rounded-full ${isError ? "bg-rose-400" : "bg-emerald-400"}"></span>
+        <span>${message}</span>
+      `;
+
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.transform = "translateY(8px)";
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // -----------------------------------------------------------------------
+    // 6. INISIALISASI HALAMAN (TEMA, MENU MOBILE & RENDER AWAL)
+    // -----------------------------------------------------------------------
+    window.addEventListener("DOMContentLoaded", () => {
+      // Render daftar project awal
+      renderProjects("all");
+
+      // Inisialisasi ikon Lucide
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      // Toggle Dark / Light Mode
+      const themeToggleBtn = document.getElementById("theme-toggle");
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener("click", () => {
+          document.documentElement.classList.toggle("dark");
+          if (window.lucide) window.lucide.createIcons();
+        });
+      }
+
+      // Toggle Mobile Navigation Drawer
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const iconOpen = document.getElementById("menu-icon-open");
+      const iconClose = document.getElementById("menu-icon-close");
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+          const isHidden = mobileMenu.classList.contains("hidden");
+          mobileMenu.classList.toggle("hidden");
+          iconOpen.classList.toggle("hidden", isHidden);
+          iconClose.classList.toggle("hidden", !isHidden);
+        });
+
+        // Tutup menu mobile saat tautan diklik
+        document.querySelectorAll(".mobile-nav-link").forEach(link => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+            iconOpen.classList.remove("hidden");
+            iconClose.classList.add("hidden");
+          });
+        });
+      }
+
+      // Tutup modal saat klik area backdrop luar
+      ["cert-modal", "project-modal", "ats-modal"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener("click", (e) => {
+            if (e.target === el) closeModal(id);
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
